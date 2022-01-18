@@ -21,7 +21,9 @@ export default function Messenger() {
   useEffect(() => {
     const FetchConversations = async () => {
       try {
-        const result = await axios.get(`/conversation/${user._id}`);
+        const result = await axios.get(
+          `https://peaceful-ridge-12992.herokuapp.com/api/conversation/${user._id}`
+        );
         setConversations(result.data);
       } catch (e) {
         console.log(e);
@@ -37,7 +39,9 @@ export default function Messenger() {
       const reciever = recieversId
         ? await Promise.all(
             recieversId.map(async (id) => {
-              const r = await axios.get(`/user?userId=${id}`);
+              const r = await axios.get(
+                `https://peaceful-ridge-12992.herokuapp.com/api/user?userId=${id}`
+              );
               return r.data;
             })
           )
@@ -66,7 +70,11 @@ export default function Messenger() {
     const con = await conversations.find((element) =>
       element.member.includes(recieverId)
     );
-    const msgs = con?._id ? await axios.get(`/messages/${con._id}`) : null;
+    const msgs = con?._id
+      ? await axios.get(
+          `https://peaceful-ridge-12992.herokuapp.com/api/messages/${con._id}`
+        )
+      : null;
     setMessages(msgs.data);
   };
 
@@ -74,7 +82,9 @@ export default function Messenger() {
     const fetchCurrentReciever = async () => {
       try {
         const res = currentRecieverId
-          ? await axios.get(`/user?userId=${currentRecieverId}`)
+          ? await axios.get(
+              `https://peaceful-ridge-12992.herokuapp.com/api/user?userId=${currentRecieverId}`
+            )
           : "";
         setCurrentReciever(res?.data);
       } catch (e) {
