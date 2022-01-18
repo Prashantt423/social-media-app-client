@@ -61,23 +61,23 @@ export default function Rightbar(props) {
     fetchFriends();
   }, [props.user]);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  const HomeRightbar = () => {
-    return (
-      <div className="rightBarBox">
-        <div className="birthdayContainer">
-          <img className="birthdayImg" src={PF + "gift.png"} alt="" />
-          <span className="birthdayText">
-            <b>Pola Foster</b> and <b>3 other friends</b> have a birhday today.
-          </span>
-        </div>
-        <img className="rightbarAd" src={PF + "ad.png"} alt="" />
-        <h4 className="rightbarTitle">Online Friends</h4>
-        <ul className="rightbarFriendList">
-          <Online />
-        </ul>
-      </div>
-    );
-  };
+  // const HomeRightbar = () => {
+  //   return (
+  //     <div className="rightBarBox">
+  //       <div className="birthdayContainer">
+  //         <img className="birthdayImg" src={PF + "gift.png"} alt="" />
+  //         <span className="birthdayText">
+  //           <b>Pola Foster</b> and <b>3 other friends</b> have a birhday today.
+  //         </span>
+  //       </div>
+  //       <img className="rightbarAd" src={PF + "ad.png"} alt="" />
+  //       <h4 className="rightbarTitle">Online Friends</h4>
+  //       <ul className="rightbarFriendList">
+  //         <Online />
+  //       </ul>
+  //     </div>
+  //   );
+  // };
 
   const ProfileRightbar = () => {
     return (
