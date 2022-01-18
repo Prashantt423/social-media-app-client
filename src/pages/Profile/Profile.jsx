@@ -54,7 +54,7 @@ export default function Profile() {
           </div>
           <div className="profileRightBottom">
             <Feed noShareComponent={true} username={params.username} />
-            {user && <Rightbar profile user={user} />}
+            <Rightbar profile user={user} />
           </div>
         </div>
       </div>
