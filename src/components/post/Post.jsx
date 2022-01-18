@@ -18,7 +18,12 @@ export default function Post(props) {
     setIsLiked(props.post.likes.includes(currentUser._id));
   }, [props.post.likes, currentUser._id]);
   const likeHandler = () => {
-    axios.put("/post/" + props.post._id + "/like", { userId: currentUser._id });
+    axios.put(
+      "https://peaceful-ridge-12992.herokuapp.com/api/post/" +
+        props.post._id +
+        "/like",
+      { userId: currentUser._id }
+    );
     setIsLiked(!isLiked);
 
     setLike((like) => (isLiked ? like - 1 : like + 1));
@@ -26,7 +31,9 @@ export default function Post(props) {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get(`/user?userId=${props.post.userId}`);
+      const res = await axios.get(
+        `https://peaceful-ridge-12992.herokuapp.com/api/user?userId=${props.post.userId}`
+      );
       setUser(res.data);
     };
     fetchUser();

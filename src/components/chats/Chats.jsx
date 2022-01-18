@@ -60,7 +60,10 @@ export default function Chats(props) {
         text: newMessage,
       });
       try {
-        const res = await axios.post("/messages", newMsg);
+        const res = await axios.post(
+          "https://peaceful-ridge-12992.herokuapp.com/api/messages",
+          newMsg
+        );
         props.setMessage((data) => {
           return [...data, res.data];
         });

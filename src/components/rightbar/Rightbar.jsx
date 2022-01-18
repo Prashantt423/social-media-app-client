@@ -15,14 +15,20 @@ export default function Rightbar(props) {
   async function handleClick() {
     try {
       if (isFollowing) {
-        await axios.put(`/user/${props.user?._id}/unfollow`, {
-          userId: currentUser._id,
-        });
+        await axios.put(
+          `https://peaceful-ridge-12992.herokuapp.com/api/user/${props.user?._id}/unfollow`,
+          {
+            userId: currentUser._id,
+          }
+        );
         dispatch({ type: "UNFOLLOW", payload: props.user._id });
       } else {
-        await axios.put(`/user/${props.user?._id}/follow`, {
-          userId: currentUser._id,
-        });
+        await axios.put(
+          `https://peaceful-ridge-12992.herokuapp.com/api/user/${props.user?._id}/follow`,
+          {
+            userId: currentUser._id,
+          }
+        );
         dispatch({ type: "FOLLOW", payload: props.user._id });
       }
     } catch (e) {
@@ -42,7 +48,9 @@ export default function Rightbar(props) {
     const fetchFriends = async () => {
       try {
         const res = props.user
-          ? await axios.post(`/user/friends?username=${props.user.username}`)
+          ? await axios.post(
+              `https://peaceful-ridge-12992.herokuapp.com/api/user/friends?username=${props.user.username}`
+            )
           : "";
         setFriends(res.data);
       } catch (e) {

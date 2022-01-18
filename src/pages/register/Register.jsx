@@ -21,7 +21,10 @@ export default function Register() {
       };
 
       try {
-        await axios.post("/auth/register", user);
+        await axios.post(
+          "https://peaceful-ridge-12992.herokuapp.com/api/auth/register",
+          user
+        );
         history.push("/");
       } catch (e) {
         console.log(e);
