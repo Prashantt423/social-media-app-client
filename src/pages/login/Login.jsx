@@ -4,6 +4,7 @@ import { loginCall } from "../../apiCalls";
 import { AuthContext } from "../../context/AuthContext";
 import CircularProgress from "@mui/material/CircularProgress";
 import Stack from "@mui/material/Stack";
+import { Link } from "react-router-dom";
 export default function Login() {
   const { isFetching, dispatch } = useContext(AuthContext);
   const email = useRef();
@@ -42,7 +43,7 @@ export default function Login() {
               className="loginInput"
               ref={password}
             />
-            <button className="loginButton" disabled={isFetching}>
+            <button type="submit" className="loginButton" disabled={isFetching}>
               {isFetching ? (
                 <Stack
                   sx={{
@@ -60,19 +61,19 @@ export default function Login() {
               )}
             </button>
             <span className="loginForgot">Forgot Password?</span>
-            <button className="loginRegisterButton">
-              <Stack
-                sx={{
-                  color: "white",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-                direction="row"
-              >
-                <CircularProgress size="30px" color="inherit" />
-              </Stack>
-            </button>
+            <Link to="/register">
+              <button className="loginRegisterButton">
+                <Stack
+                  sx={{
+                    color: "white",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                  direction="row"
+                ></Stack>
+              </button>
+            </Link>
           </form>
         </div>
       </div>
