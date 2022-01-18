@@ -1,5 +1,5 @@
 import "./rightbar.css";
-// import Online from "../online/Online";
+import Online from "../online/Online";
 
 import axios from "axios";
 import { useContext, useState } from "react";
@@ -15,20 +15,14 @@ export default function Rightbar(props) {
   async function handleClick() {
     try {
       if (isFollowing) {
-        await axios.put(
-          `https://peaceful-ridge-12992.herokuapp.com/api/user/${props.user?._id}/unfollow`,
-          {
-            userId: currentUser._id,
-          }
-        );
+        await axios.put(`/user/${props.user?._id}/unfollow`, {
+          userId: currentUser._id,
+        });
         dispatch({ type: "UNFOLLOW", payload: props.user._id });
       } else {
-        await axios.put(
-          `https://peaceful-ridge-12992.herokuapp.com/api/user/${props.user?._id}/follow`,
-          {
-            userId: currentUser._id,
-          }
-        );
+        await axios.put(`/user/${props.user?._id}/follow`, {
+          userId: currentUser._id,
+        });
         dispatch({ type: "FOLLOW", payload: props.user._id });
       }
     } catch (e) {
@@ -48,9 +42,7 @@ export default function Rightbar(props) {
     const fetchFriends = async () => {
       try {
         const res = props.user
-          ? await axios.post(
-              `https://peaceful-ridge-12992.herokuapp.com/api/user/friends?username=${props.user.username}`
-            )
+          ? await axios.post(`/user/friends?username=${props.user.username}`)
           : "";
         setFriends(res.data);
       } catch (e) {
@@ -61,23 +53,23 @@ export default function Rightbar(props) {
     fetchFriends();
   }, [props.user]);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  // const HomeRightbar = () => {
-  //   return (
-  //     <div className="rightBarBox">
-  //       <div className="birthdayContainer">
-  //         <img className="birthdayImg" src={PF + "gift.png"} alt="" />
-  //         <span className="birthdayText">
-  //           <b>Pola Foster</b> and <b>3 other friends</b> have a birhday today.
-  //         </span>
-  //       </div>
-  //       <img className="rightbarAd" src={PF + "ad.png"} alt="" />
-  //       <h4 className="rightbarTitle">Online Friends</h4>
-  //       <ul className="rightbarFriendList">
-  //         <Online />
-  //       </ul>
-  //     </div>
-  //   );
-  // };
+  const HomeRightbar = () => {
+    return (
+      <div className="rightBarBox">
+        <div className="birthdayContainer">
+          <img className="birthdayImg" src={PF + "gift.png"} alt="" />
+          <span className="birthdayText">
+            <b>Pola Foster</b> and <b>3 other friends</b> have a birhday today.
+          </span>
+        </div>
+        <img className="rightbarAd" src={PF + "ad.png"} alt="" />
+        <h4 className="rightbarTitle">Online Friends</h4>
+        <ul className="rightbarFriendList">
+          <Online />
+        </ul>
+      </div>
+    );
+  };
 
   const ProfileRightbar = () => {
     return (
@@ -141,7 +133,7 @@ export default function Rightbar(props) {
   return (
     <div className="rightbar">
       <div className="rightbarWrapper">
-        <ProfileRightbar />
+        {props.profile ? <ProfileRightbar /> : <HomeRightbar />}
       </div>
     </div>
   );
