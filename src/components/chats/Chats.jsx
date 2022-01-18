@@ -19,7 +19,7 @@ export default function Chats(props) {
   const scrollRef = useRef();
   const socket = useRef();
   useEffect(() => {
-    socket.current = io("ws://localhost:8900");
+    socket.current = io("ws:https://social-media-socket.herokuapp.com");
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
         sender: data.senderId,
