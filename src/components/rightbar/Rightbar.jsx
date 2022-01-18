@@ -141,7 +141,7 @@ export default function Rightbar(props) {
   return (
     <div className="rightbar">
       <div className="rightbarWrapper">
-        {props.profile ? <ProfileRightbar /> : <HomeRightbar />}
+        <ProfileRightbar />
       </div>
     </div>
   );
